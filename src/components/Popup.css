@@ -1,0 +1,23 @@
+.player{
+    height: 50px;
+    width: 350px;
+    background-color: rgb(216, 255, 255);
+    border-radius: 30px 30px 30px 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+}
+.player svg{
+    font-size: 2rem;
+    cursor: pointer;
+}
+.close-popup{
+    align-self: flex-start;
+position: absolute;
+left: 7px;
+cursor: pointer;
+}
+.close-popup svg{
+    font-size: 1rem;
+}

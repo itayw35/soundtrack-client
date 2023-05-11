@@ -1,0 +1,33 @@
+.track-links-flex{
+    display: flex;
+    flex-wrap: wrap;
+gap: 15px;}
+.track-link{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: blue;
+}
+.wrapping-flex{
+    display: flex;
+    width: 90%;
+    justify-content: center;
+    height: 95%;
+    
+}
+.vertical-wrapping-flex{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100vh;
+}
+.track-image{
+    height: 200px;
+    width: 200px;
+    transition: height 1s ease, width 1s ease;
+
+}
+.track-image:hover{
+height: 400px;
+width: 400px;
+}
