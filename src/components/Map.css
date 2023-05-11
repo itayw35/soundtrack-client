@@ -3,12 +3,12 @@
     .vertical-map-flex{
     
         width:100vw;
-        aspect-ratio: 2/3;
         display: flex;
         flex-direction: column;
-        height: 100vh;
-        justify-content: space-evenly;
+        height: 100%;
+        justify-content: space-between;
         align-items: center;
+        margin-top: 25px;
     }
     .horizontal-map-flex{
         display: flex;
@@ -19,5 +19,9 @@
     }
     .map{
         display: flex;
+        aspect-ratio: 3/2;
+    }
+    .map div{
+        border-radius: 30px;
     }
 } 
