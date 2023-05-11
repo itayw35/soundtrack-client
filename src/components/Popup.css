@@ -1,23 +1,33 @@
 .player{
     height: 50px;
-    width: 350px;
+    width: 50%;
     background-color: rgb(216, 255, 255);
     border-radius: 30px 30px 30px 30px;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: space-around;
     align-items: center;
     margin-top: 30px;
+    padding: 10px
 }
 .player svg{
     font-size: 2rem;
     cursor: pointer;
 }
 .close-popup{
-    align-self: flex-start;
-position: absolute;
-left: 7px;
+    width: 100%;
+    display: flex;
+    justify-content:left;
+align-self: flex-start;
+/* position: absolute;
+left: 7px; */
 cursor: pointer;
 }
 .close-popup svg{
     font-size: 1rem;
+}
+.player-button{
+    display: flex;
+    justify-content: center;
+    width: 100%;
 }

@@ -21,11 +21,13 @@ export default function Popup(props) {
         <div className="close-popup">
           <AiOutlineClose onTouchStart={() => props.setIsPopup(false)} />
         </div>
-        {!isPlaying ? (
-          <AiOutlinePlayCircle onTouchStart={() => handleAudio()} />
-        ) : (
-          <AiOutlinePauseCircle onTouchStart={() => handleAudio()} />
-        )}
+        <div className="player-button">
+          {!isPlaying ? (
+            <AiOutlinePlayCircle onTouchStart={() => handleAudio()} />
+          ) : (
+            <AiOutlinePauseCircle onTouchStart={() => handleAudio()} />
+          )}
+        </div>
       </div>
       <audio
         ref={audioRef}
