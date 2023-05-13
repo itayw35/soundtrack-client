@@ -2,7 +2,7 @@ import "../App.css";
 import { useEffect, useRef, useState } from "react";
 import icon from "../bluedot.png";
 import { useParams } from "react-router-dom";
-import MyPopup from "./MyPopup";
+// import MyPopup from "./MyPopup";
 import axios from "axios";
 import Header from "./Header";
 import "./Map.css";
