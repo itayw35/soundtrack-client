@@ -129,13 +129,13 @@ export default function Map() {
           </div>
         )}
         {/* </div> */}
-        {isPopup ? (
+        {/* {isPopup ? (
           <MyPopup
             markers={details.markers}
             markerNum={markerNum}
             setIsPopup={setIsPopup}
           ></MyPopup>
-        ) : null}
+        ) : null} */}
       </div>
     </>
   );
