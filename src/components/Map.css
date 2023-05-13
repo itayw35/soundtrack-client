@@ -1,6 +1,6 @@
 
 @media screen and (max-width:480px) {
-    .vertical-map-flex{
+     .vertical-map-flex{
     
         width:100vw;
         display: flex;
@@ -10,18 +10,38 @@
         align-items: center;
         margin-top: 25px;
     }
+    .vertical-map-flex svg{
+        font-size: 2.5rem;
+    }
+    /*
     .horizontal-map-flex{
         display: flex;
         width: 50%;
         justify-content: center;
         height: 50%;
         align-items: center;
-    }
-    .map{
+    } */
+    /* .map{
         display: flex;
         aspect-ratio: 3/2;
-    }
+    } */
     .map div{
         border-radius: 30px;
     }
+    .leaflet-container{
+        border-radius: 30px;
+        height: 70vh;
+        width: 100%;
+    }
+    .popup{
+        height: 100%;
+        width: 100%;
+        background-color: aqua;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    /* .leaflet-control-container .leaflet-routing-container-hide{
+        display: none;
+    } */
 } 

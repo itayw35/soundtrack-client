@@ -1,39 +1,42 @@
 import "../App.css";
-import { GoogleMap, LoadScript } from "@react-google-maps/api";
-import {
-  Marker,
-  DirectionsService,
-  DirectionsRenderer,
-} from "@react-google-maps/api";
 import { useEffect, useRef, useState } from "react";
-import icon from "../bluedot.jpeg";
+import icon from "../bluedot.png";
 import { useParams } from "react-router-dom";
-import Popup from "./Popup";
+import MyPopup from "./MyPopup";
 import axios from "axios";
 import Header from "./Header";
 import "./Map.css";
-const containerStyle = {
-  width: "350px",
-  height: "400px",
-};
-
-const onLoad = (marker) => {
-  console.log("marker: ", marker);
-};
+import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import RoutingMachine from "./RoutingMachine";
+import { Icon } from "leaflet";
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
+import { AiOutlinePlayCircle } from "react-icons/ai";
+import { AiOutlinePauseCircle } from "react-icons/ai";
+import { AiOutlineClose } from "react-icons/ai";
 
 export default function Map() {
   const { trackId } = useParams();
-  const apiKey = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
   const [details, setDetails] = useState({});
   const [position, setPosition] = useState({});
-  const [directions, setDirections] = useState();
   const [isPopup, setIsPopup] = useState(false);
   const [markerNum, setMarkerNum] = useState();
   const markerRef = useRef();
+  function toBase64(arr) {
+    return btoa(
+      arr.reduce((data, byte) => data + String.fromCharCode(byte), "")
+    );
+  }
+  const audioRef = useRef();
+  const [isPlaying, setIsPlaying] = useState(false);
+  const handleAudio = () => {
+    !isPlaying ? audioRef.current.play() : audioRef.current.pause();
+    setIsPlaying(!isPlaying);
+  };
 
   useEffect(() => {
     navigator.geolocation.watchPosition(
       ({ coords: { latitude, longitude } }) => {
+        console.log(latitude + " " + longitude);
         setPosition({ lat: latitude, lng: longitude });
       }
     );
@@ -47,76 +50,91 @@ export default function Map() {
       })
       .catch((err) => console.log(err));
   }, []);
-  const directionsCallback = (result, status) => {
-    if (status === "OK") setDirections(result);
-  };
+  const codingSpot = new Icon({
+    iconUrl: icon,
+    iconSize: [30, 30],
+    iconAnchor: [-25, -40],
+  });
   return (
     <>
       <Header />
       <div className="vertical-map-flex">
         <b>{trackId}</b>
-        <div className="horizontal-map-flex">
-          <div className="map">
+        {/* <div className="horizontal-map-flex"> */}
+
+        {details.center ? (
+          <MapContainer
+            center={[details.center.latitude, details.center.longitude]}
+            zoom={16}
+            scrollWheelZoom={true}
+          >
+            <TileLayer
+              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+              attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+            ></TileLayer>
+            <Marker
+              ref={markerRef}
+              position={position}
+              icon={codingSpot}
+            ></Marker>
             {details ? (
-              <LoadScript googleMapsApiKey={apiKey}>
-                <GoogleMap
-                  mapContainerStyle={containerStyle}
-                  center={details.center}
-                  zoom={16}
-                >
-                  {window.google ? (
-                    <Marker
-                      ref={markerRef}
-                      visible={true}
-                      opacity={1}
-                      onLoad={onLoad}
-                      position={position}
-                      icon={{
-                        url: icon,
-                        scaledSize: new window.google.maps.Size(30, 30),
-                        origin: new window.google.maps.Point(0, 0),
-                      }}
-                    />
-                  ) : null}
-                  {details.markers
-                    ? details.markers.map((v, i) => {
-                        return (
-                          <Marker
-                            position={{ lat: v.latitude, lng: v.longitude }}
-                            onClick={() => {
-                              setIsPopup(true);
-                              setMarkerNum(i);
-                            }}
-                          />
-                        );
-                      })
-                    : null}
-                  <DirectionsService
-                    options={{
-                      origin: {
-                        lat: details?.origin?.latitude,
-                        lng: details?.origin?.longitude,
-                      },
-                      destination: {
-                        lat: details?.destination?.latitude,
-                        lng: details?.destination?.longitude,
-                      },
-                      travelMode: "WALKING",
-                    }}
-                    callback={directionsCallback}
-                  />
-                  {directions && <DirectionsRenderer directions={directions} />}
-                </GoogleMap>
-              </LoadScript>
+              <RoutingMachine
+                origin={details.origin}
+                destination={details.destination}
+                markers={details.markers}
+              />
             ) : null}
+            {details.markers
+              ? details.markers.map((v, i) => {
+                  return (
+                    <Marker
+                      position={{ lat: v.latitude, lng: v.longitude }}
+                      onTouchStart={() => {
+                        setIsPopup(true);
+                        setMarkerNum(i);
+                      }}
+                    >
+                      <Popup>
+                        <div className="popup">
+                          {!isPlaying ? (
+                            <AiOutlinePlayCircle
+                              onTouchStart={() => handleAudio()}
+                            />
+                          ) : (
+                            <AiOutlinePauseCircle
+                              onTouchStart={() => handleAudio()}
+                            />
+                          )}
+                          <audio
+                            ref={audioRef}
+                            src={`data:audio/mp4;base64,${toBase64(
+                              details.markers[i].audio.data.data
+                            )}`}
+                          ></audio>
+                        </div>
+                      </Popup>
+                    </Marker>
+                  );
+                })
+              : null}
+          </MapContainer>
+        ) : (
+          <div>
+            <br />
+            <AiOutlineLoading3Quarters />
+            <br />
+            <span>
+              <b>Loading...</b>
+            </span>
           </div>
-        </div>
+        )}
+        {/* </div> */}
         {isPopup ? (
-          <Popup
+          <MyPopup
             markers={details.markers}
             markerNum={markerNum}
             setIsPopup={setIsPopup}
-          ></Popup>
+          ></MyPopup>
         ) : null}
       </div>
     </>
