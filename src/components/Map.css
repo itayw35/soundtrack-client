@@ -1,5 +1,8 @@
 
 @media screen and (max-width:480px) {
+    .trackId{
+        z-index: 1;
+    }
      .vertical-map-flex{
     
         width:100vw;
@@ -25,12 +28,11 @@
         display: flex;
         aspect-ratio: 3/2;
     } */
-    .map div{
-        border-radius: 30px;
-    }
+  
+    
     .leaflet-container{
         border-radius: 30px;
-        height: 70vh;
+        height: 60vh;
         width: 100%;
     }
     .popup{
@@ -41,7 +43,16 @@
         justify-content: center;
         align-items: center;
     }
+    .track-description{
+        background-color: aliceblue;
+        height: 20vh;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+}
     /* .leaflet-control-container .leaflet-routing-container-hide{
         display: none;
     } */
-} 

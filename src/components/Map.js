@@ -59,8 +59,8 @@ export default function Map() {
     <>
       <Header />
       <div className="vertical-map-flex">
-        <b>{trackId}</b>
         {/* <div className="horizontal-map-flex"> */}
+        <b className="trackId">{trackId}</b>
 
         {details.center ? (
           <MapContainer
@@ -128,14 +128,9 @@ export default function Map() {
             </span>
           </div>
         )}
-        {/* </div> */}
-        {/* {isPopup ? (
-          <MyPopup
-            markers={details.markers}
-            markerNum={markerNum}
-            setIsPopup={setIsPopup}
-          ></MyPopup>
-        ) : null} */}
+        <p className="track-description">
+          <div>Track Description</div>
+        </p>
       </div>
     </>
   );
