@@ -9,9 +9,10 @@
         display: flex;
         flex-direction: column;
         height: 100%;
-        justify-content: space-between;
+        justify-content: center;
         align-items: center;
         margin-top: 25px;
+        gap: 0px;
     }
     .vertical-map-flex svg{
         font-size: 2.5rem;
@@ -45,11 +46,14 @@
     }
     .track-description{
         background-color: aliceblue;
-        height: 20vh;
+        min-height: 20vh;
         width: 100%;
         display: flex;
         justify-content: center;
         align-items: center;
+        border-radius: 30px;
+        margin-top: 0px;
+        margin-bottom: 0px;
     }
 
 }
