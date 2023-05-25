@@ -1,33 +1,49 @@
-.player{
-    height: 50px;
-    width: 50%;
-    background-color: rgb(216, 255, 255);
-    border-radius: 30px 30px 30px 30px;
+.user-details {
+    height: 40px;
+    width: 70%;
+    border-radius: 30px;
+  }
+  
+  .user-details:hover {
+    background-color: whitesmoke;
+  }
+  
+  .submit-btn {
+    width: 70%;
+    border-radius: 30px;
+  }
+  .submit-btn:hover {
+    cursor: pointer;
+    background-color: darkgray;
+  }
+  #login-box {
+    height: 65%;
+  width: 80%;
+  position: absolute;
+    top: 10vh;
+    left: 50px;
+    background-color: aliceblue;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-    margin-top: 30px;
-    padding: 10px
-}
-.player svg{
-    font-size: 2rem;
-    cursor: pointer;
-}
-.close-popup{
-    width: 100%;
-    display: flex;
-    justify-content:left;
-align-self: flex-start;
-/* position: absolute;
-left: 7px; */
-cursor: pointer;
-}
-.close-popup svg{
-    font-size: 1rem;
-}
-.player-button{
-    display: flex;
     justify-content: center;
+    border-radius: 10px;
+    box-shadow: 2px 2px plum;
+    z-index: 1;
+    opacity: 0.85;
+  }
+  .login-form {
+    height: 60%;
     width: 100%;
-}
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .register-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 40%;
+    width: 100%;
+  }
