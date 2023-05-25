@@ -2,12 +2,7 @@
     display: flex;
     flex-wrap: wrap;
 gap: 15px;}
-.track-link{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    color: blue;
-}
+
 .wrapping-flex{
     display: flex;
     width: 90%;
@@ -23,20 +18,63 @@ gap: 15px;}
     width: 100vw;
     align-items: center;
 }
-.track-image{
-    height: 200px;
-    width: 200px;
-    transition: height 1s ease, width 1s ease;
 
-}
-.track-image:hover{
-height: 400px;
-width: 400px;
-}
-.track-box{
+
+/* .container{
     display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    height: 300px;
     align-items: center;
-}
+    justify-content: center;
+    background: #e1e8f8;
+ }
+ .container a{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    color: #fff;
+    text-decoration: none;
+    font-family: 'Poppins', sans-serif;
+    font-size: 18px;
+ }
+ .container a i{
+    margin-right: 5px;
+ }
+ .container .download_loader.active{
+    position: absolute;
+    height: 14%;
+    width: 100%;
+    background: #fff;
+    bottom: 0;
+    justify-content: flex-start;
+    border-radius: 0px 0px 3px 3px;
+    overflow: hidden;
+    animation: loader 10s forwards;
+ }
+ @keyframes loader{
+    0%{
+        background: #2749ee;
+        width: 0%;
+        border-radius: 0px 0px 0px 3px;
+    }
+    30%{
+        background: #2749ee;
+        width: 30%;
+        border-radius: 0px 0px 0px 3px;
+    }
+    50%{
+        background: #2749ee;
+        width: 50%;
+        border-radius: 0px 0px 0px 3px;
+    }
+    90%{
+        background: #2749ee;
+        width: 90%;
+        border-radius: 0px 0px 0px 3px;
+    }
+    100%{
+        background: #2749ee;
+        width: 100%;
+        border-radius: 0px 0px 3px 3px;
+    }
+ } */

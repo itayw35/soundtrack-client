@@ -12,14 +12,11 @@ import { Icon } from "leaflet";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { AiOutlinePlayCircle } from "react-icons/ai";
 import { AiOutlinePauseCircle } from "react-icons/ai";
-import { AiOutlineClose } from "react-icons/ai";
 
 export default function Map() {
   const { trackId } = useParams();
   const [details, setDetails] = useState({});
   const [position, setPosition] = useState({});
-  const [isPopup, setIsPopup] = useState(false);
-  const [markerNum, setMarkerNum] = useState();
   const markerRef = useRef();
   function toBase64(arr) {
     return btoa(
@@ -59,7 +56,6 @@ export default function Map() {
     <>
       <Header />
       <div className="vertical-map-flex">
-        {/* <div className="horizontal-map-flex"> */}
         <b className="trackId">{trackId}</b>
 
         {details.center ? (
@@ -87,13 +83,7 @@ export default function Map() {
             {details.markers
               ? details.markers.map((v, i) => {
                   return (
-                    <Marker
-                      position={{ lat: v.latitude, lng: v.longitude }}
-                      onTouchStart={() => {
-                        setIsPopup(true);
-                        setMarkerNum(i);
-                      }}
-                    >
+                    <Marker position={{ lat: v.latitude, lng: v.longitude }}>
                       <Popup>
                         <div className="popup">
                           {!isPlaying ? (

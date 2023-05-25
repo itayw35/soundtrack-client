@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import axios from "axios";
 import Header from "./Header.js";
 import "./Main.css";
+import Track from "./Track.js";
 export default function Main() {
   const [tracks, setTracks] = useState([]);
   useEffect(() => {
@@ -14,11 +14,7 @@ export default function Main() {
       })
       .catch((err) => console.log(err));
   }, []);
-  function toBase64(arr) {
-    return btoa(
-      arr.reduce((data, byte) => data + String.fromCharCode(byte), "")
-    );
-  }
+
   return (
     <>
       <Header />
@@ -27,22 +23,7 @@ export default function Main() {
           <div className="track-links-flex">
             {tracks.length
               ? tracks.map((track) => {
-                  return (
-                    <Link
-                      className="track-link"
-                      to={`/tracks/${track.trackName}`}
-                    >
-                      <div className="track-box">
-                        <span>{track.trackName}</span>
-                        <img
-                          className="track-image"
-                          src={`data:image/jpeg;base64,${toBase64(
-                            track.img.data.data
-                          )}`}
-                        />
-                      </div>
-                    </Link>
-                  );
+                  return <Track track={track} />;
                 })
               : null}
           </div>
