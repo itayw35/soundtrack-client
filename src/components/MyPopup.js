@@ -1,4 +1,5 @@
 import React from "react";
+import { AiOutlineCloseCircle } from "react-icons/ai";
 import "./Popup.css";
 
 export default function MyPopup(props) {
@@ -29,6 +30,9 @@ export default function MyPopup(props) {
   return (
     <>
       <div id="login-box">
+        <span className="close-popup" onClick={() => props.setIsPopup(false)}>
+          <AiOutlineCloseCircle />
+        </span>
         <form className="login-form" onSubmit={(e) => login(e)}>
           {!props.isLogin ? (
             <div className="register-form">

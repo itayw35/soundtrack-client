@@ -24,7 +24,7 @@ export default function Main() {
       <Header setIsPopup={setIsPopup} setIsLogin={setIsLogin} />
       {isPopup ? (
         <div className="popup-container">
-          <MyPopup isLogin={isLogin} />
+          <MyPopup isLogin={isLogin} setIsPopup={setIsPopup} />
         </div>
       ) : null}
       <div className="vertical-wrapping-flex">
