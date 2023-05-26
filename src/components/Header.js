@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Header.css";
 import { IoIosArrowDropdown } from "react-icons/io";
 
@@ -8,6 +8,9 @@ export default function Header(props) {
     props.setIsLoggedIn(localStorage.clear());
     setIsOpenDropdown(false);
   };
+  useEffect(() => {
+    console.log(props.isLoggedIn);
+  }, []);
   return (
     <header>
       <div className="user-name-flex">
