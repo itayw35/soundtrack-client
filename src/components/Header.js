@@ -4,13 +4,14 @@ import { IoIosArrowDropdown } from "react-icons/io";
 
 export default function Header(props) {
   const [isOpenDropdown, setIsOpenDropdown] = useState(false);
+  const [count, setCount] = useState(0);
   const handleLogout = () => {
     props.setIsLoggedIn(localStorage.clear());
     setIsOpenDropdown(false);
   };
   useEffect(() => {
-    console.log(props.isLoggedIn);
-  }, []);
+    setCount(count + 1);
+  }, [props.isLoggedIn]);
   return (
     <header>
       <div className="user-name-flex">
