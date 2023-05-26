@@ -21,6 +21,7 @@ export default function MyPopup(props) {
         password: password,
       })
       .then((res) => {
+        console.log(res.data);
         localStorage.token = res.data.token;
         localStorage.userName = res.data.userName;
         props.setIsLoggedIn(true);
