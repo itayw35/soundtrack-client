@@ -1,31 +1,31 @@
 import React from "react";
 import { AiOutlineCloseCircle } from "react-icons/ai";
+import axios from "axios";
 import "./Popup.css";
 
 export default function MyPopup(props) {
   const login = function (e) {
-    // e.preventDefault();
-    // const userName = e.target.userName.value;
-    // const password = e.target.password.value;
-    // const fname = e.target.firstName?.value;
-    // const lname = e.target.lastName?.value;
-    // const url = props.isLogin
-    //   ? `${baseURL}/users/login`
-    //   : `${baseURL}/users/register`;
-    // axios
-    //   .post(url, {
-    //     fname: fname,
-    //     lname: lname,
-    //     email: userName,
-    //     password: password,
-    //   })
-    //   .then((res) => {
-    //     localStorage.token = res.data.token;
-    //     localStorage.userName = res.data.userName;
-    //     props.setIsLogged(true);
-    //     setCurrentPlaylist();
-    //   })
-    //   .catch((err) => console.log(err));
+    e.preventDefault();
+    const userName = e.target.userName.value;
+    const password = e.target.password.value;
+    const fname = e.target.firstName?.value;
+    const lname = e.target.lastName?.value;
+    const url = props.isLogin
+      ? `https://soundtrack.herokuapp.com/users/login`
+      : `https://soundtrack.herokuapp.com/users/register`;
+    axios
+      .post(url, {
+        fname: fname,
+        lname: lname,
+        email: userName,
+        password: password,
+      })
+      .then((res) => {
+        localStorage.token = res.data.token;
+        localStorage.userName = res.data.userName;
+        props.setIsLoggedIn(true);
+      })
+      .catch((err) => console.log(err));
   };
   return (
     <>

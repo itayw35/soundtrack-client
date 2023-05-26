@@ -4,7 +4,6 @@ import { IoIosArrowDropdown } from "react-icons/io";
 
 export default function Header(props) {
   const [isOpenDropdown, setIsOpenDropdown] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const handleLogout = () => {
     setIsOpenDropdown(false);
   };
@@ -13,14 +12,14 @@ export default function Header(props) {
       <div className="user-name-flex">
         <div className="user-name-container">
           <span>
-            Hello
+            Hello {localStorage.userName}
             <IoIosArrowDropdown
               onClick={() => {
                 setIsOpenDropdown(!isOpenDropdown);
               }}
             />
           </span>
-          {isOpenDropdown && isLoggedIn ? (
+          {isOpenDropdown && props.isLoggedIn ? (
             <div className="dropdown-flex">
               <button className="dropdown-button" onClick={handleLogout}>
                 Disconnect

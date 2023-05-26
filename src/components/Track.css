@@ -36,3 +36,56 @@ width: 400px;
     height: 300px;
     align-items: center;
 }
+.inner-flex{
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+}
+.inner-flex svg{
+    font-size: 1.5rem;
+}
+.container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #e1e8f8;
+ }
+
+ .container .download_loader.active{
+    position: absolute;
+    top:12%;
+    height: 10px;
+    width: 100%;
+    background: #fff;
+    justify-content: flex-start;
+    border-radius: 0px 0px 3px 3px;
+    overflow: hidden;
+    animation: loader 10s forwards;
+ }
+ @keyframes loader{
+    0%{
+        background: #2749ee;
+        width: 0%;
+        border-radius: 0px 0px 0px 3px;
+    }
+    30%{
+        background: #2749ee;
+        width: 30%;
+        border-radius: 0px 0px 0px 3px;
+    }
+    50%{
+        background: #2749ee;
+        width: 50%;
+        border-radius: 0px 0px 0px 3px;
+    }
+    90%{
+        background: #2749ee;
+        width: 90%;
+        border-radius: 0px 0px 0px 3px;
+    }
+    100%{
+        background: #2749ee;
+        width: 100%;
+        border-radius: 0px 0px 3px 3px;
+    }
+ } 
