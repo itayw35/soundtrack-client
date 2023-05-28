@@ -54,9 +54,6 @@ function Track(props) {
     </Link>
   ) : props.track.isAvailable ? (
     <div>
-      <div ref={containerRef} className="container">
-        <span ref={loaderRef} className="download_loader"></span>
-      </div>
       <div className="unavailable-track-link">
         <div className="track-box">
           <div className="inner-flex">
@@ -64,6 +61,9 @@ function Track(props) {
             <span>
               <AiOutlineDownload onClick={handleDownload} />
             </span>
+            <div ref={containerRef} className="container">
+              <span ref={loaderRef} className="download_loader"></span>
+            </div>
           </div>
           <img
             className="unavailable-track-image"
