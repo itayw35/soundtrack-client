@@ -58,9 +58,12 @@ function Track(props) {
         <div className="track-box">
           <div className="inner-flex">
             <span>{props.track.trackName}</span>
-            <span>
-              <AiOutlineDownload onClick={handleDownload} />
-            </span>
+            <div className="download-flex">
+              <span>
+                <AiOutlineDownload onClick={handleDownload} />
+              </span>
+              <span>Download</span>
+            </div>
             <div ref={containerRef} className="container">
               <span ref={loaderRef} className="download_loader"></span>
             </div>

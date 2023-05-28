@@ -52,8 +52,7 @@ width: 400px;
  }
 
  .container .download_loader.active{
-    /* position: absolute;
-    top:12%; */
+   
     height: 10px;
     width: 100%;
     background: #fff;
@@ -61,6 +60,10 @@ width: 400px;
     border-radius: 0px 0px 3px 3px;
     overflow: hidden;
     animation: loader 10s forwards;
+ }
+ .download-flex{
+    display: flex;
+    flex-direction: column;
  }
  @keyframes loader{
     0%{
