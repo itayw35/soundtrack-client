@@ -28,6 +28,8 @@ export default function Main() {
           setUserTracks(res.data);
         })
         .catch((err) => console.log(err));
+    } else {
+      setUserTracks([]);
     }
   }, [isLoggedIn]);
 
