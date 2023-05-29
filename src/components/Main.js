@@ -9,7 +9,7 @@ export default function Main() {
   const [userTracks, setUserTracks] = useState([]);
   const [isPopup, setIsPopup] = useState(false);
   const [isLogin, setIsLogin] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(localStorage.token);
 
   useEffect(() => {
     axios
