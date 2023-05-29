@@ -37,6 +37,7 @@ export default function Main() {
         setIsPopup={setIsPopup}
         setIsLogin={setIsLogin}
         isLoggedIn={isLoggedIn}
+        setIsLoggedIn={setIsLoggedIn}
       />
       {isPopup ? (
         <div className="popup-container">

@@ -4,13 +4,12 @@ import { IoIosArrowDropdown } from "react-icons/io";
 
 export default function Header(props) {
   const [isOpenDropdown, setIsOpenDropdown] = useState(false);
-  const [count, setCount] = useState(0);
   const handleLogout = () => {
     props.setIsLoggedIn(localStorage.clear());
     setIsOpenDropdown(false);
   };
   useEffect(() => {
-    setCount(count + 1);
+    setIsOpenDropdown(false);
   }, [props.isLoggedIn]);
   return (
     <header>
