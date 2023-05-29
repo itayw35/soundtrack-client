@@ -41,7 +41,7 @@ function Track(props) {
   };
   useEffect(() => {
     setIsTempAvailable(false);
-  }, [props.userTracks]);
+  }, [props.isLoggedIn]);
   return props.track.isAvailable &&
     (props.userTracks.includes(props.track._id) || isTempAvailable) ? (
     <Link className="track-link" to={`/tracks/${props.track.trackName}`}>
