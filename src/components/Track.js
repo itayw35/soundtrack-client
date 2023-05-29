@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { AiOutlineDownload } from "react-icons/ai";
 import "./Track.css";
@@ -39,7 +39,9 @@ function Track(props) {
       }
     }, 10000);
   };
-
+  useEffect(() => {
+    setIsTempAvailable(false);
+  }, [props.userTracks]);
   return props.track.isAvailable &&
     (props.userTracks.includes(props.track._id) || isTempAvailable) ? (
     <Link className="track-link" to={`/tracks/${props.track.trackName}`}>
