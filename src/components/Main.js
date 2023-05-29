@@ -29,7 +29,7 @@ export default function Main() {
         })
         .catch((err) => console.log(err));
     }
-  }, []);
+  }, [isLoggedIn]);
 
   return (
     <>
