@@ -42,6 +42,7 @@ export default function MyPopup(props) {
                 className="user-details"
                 placeholder="first name"
                 type={"text"}
+                autoFocus
               ></input>
               <input
                 name="lastName"
@@ -56,6 +57,7 @@ export default function MyPopup(props) {
             className="user-details"
             placeholder="email"
             type={"email"}
+            autoFocus
           ></input>
 
           <input
