@@ -29,7 +29,9 @@ export default function Map() {
     !isPlaying ? audioRef.current.play() : audioRef.current.pause();
     setIsPlaying(!isPlaying);
   };
-
+  useEffect(()=>{
+    console.log(process.env.MAPBOX_API_KEY);
+},[])
   useEffect(() => {
     navigator.geolocation.watchPosition(
       ({ coords: { latitude, longitude } }) => {
