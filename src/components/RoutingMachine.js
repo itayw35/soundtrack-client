@@ -1,7 +1,10 @@
 import L from "leaflet";
 import { createControlComponent } from "@react-leaflet/core";
 import "leaflet-routing-machine"
-
+import { useEffect } from "react";
+useEffect(()=>{
+    console.log(process.env.MAPBOX_API_KEY);
+},[])
 const createRoutineMachineLayer = (props)=>{
     const markers= props.markers.map((marker)=>{return L.latLng(marker.latitude,marker.longitude)})
     const instance = L.Routing.control({
