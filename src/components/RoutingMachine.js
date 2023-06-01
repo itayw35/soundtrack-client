@@ -10,6 +10,7 @@ const createRoutineMachineLayer = (props)=>{
           ...markers,
             L.latLng(props.destination.latitude,props.destination.longitude)
         ],
+        router: L.Routing.mapbox(process.env.MAPBOX_API_KEY,{ profile: "mapbox/walking" }),
         lineOptions:{
             styles:[{color:"blue",weight:4}]
         }
