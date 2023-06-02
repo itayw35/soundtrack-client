@@ -42,8 +42,7 @@ function Track(props) {
   useEffect(() => {
     setIsTempAvailable(false);
   }, [props.userTracks]);
-  return props.track.isAvailable &&
-    (props.userTracks.includes(props.track._id) || isTempAvailable) ? (
+  return  (props.userTracks.includes(props.track._id) || isTempAvailable) ? (
     <Link className="track-link" to={`/tracks/${props.track.trackName}`}>
       <div className="track-box">
         <span>{props.track.trackName}</span>
@@ -54,7 +53,7 @@ function Track(props) {
         />
       </div>
     </Link>
-  ) : props.track.isAvailable ? (
+  ) :  (
     <div>
       <div className="unavailable-track-link">
         <div className="track-box">
@@ -80,19 +79,8 @@ function Track(props) {
         </div>
       </div>
     </div>
-  ) : (
-    <div className="unavailable-track-link">
-      {" "}
-      <div className="track-box">
-        <span>{props.track.trackName}</span>
-        <img
-          className="unavailable-track-image"
-          src={`data:image/jpeg;base64,${toBase64(props.track.img.data.data)}`}
-          alt=""
-        />
-      </div>
-    </div>
-  );
+  ) 
+
 }
 
 export default Track;
