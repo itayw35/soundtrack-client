@@ -52,7 +52,7 @@
         width: 100%;
         display: flex;
         flex-direction: column;
-        justify-content: center;
+        justify-content: space-between;
         align-items: center;
         border-radius: 30px;
         text-align: center;
