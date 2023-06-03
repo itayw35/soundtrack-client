@@ -29,7 +29,7 @@ export default function Map() {
     !isPlaying ? audioRef.current.play() : audioRef.current.pause();
     setIsPlaying(!isPlaying);
   };
-  
+
   useEffect(() => {
     navigator.geolocation.watchPosition(
       ({ coords: { latitude, longitude } }) => {
@@ -86,6 +86,7 @@ export default function Map() {
                     <Marker position={{ lat: v.latitude, lng: v.longitude }}>
                       <Popup>
                         <div className="popup">
+                          <span>{v.markerName}</span>
                           {!isPlaying ? (
                             <AiOutlinePlayCircle
                               onTouchStart={() => handleAudio()}
@@ -118,8 +119,11 @@ export default function Map() {
             </span>
           </div>
         )}
-        <p className="track-description">
-          <div>Track Description</div>
+        <p className="track-details">
+          <span>
+            <h5>מורת דרך: {details.guideName}</h5>
+          </span>
+          <p className="track-description">{details.description}</p>
         </p>
       </div>
     </>

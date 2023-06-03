@@ -1,9 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { AiOutlineCloseCircle } from "react-icons/ai";
 import axios from "axios";
 import "./Popup.css";
 
 export default function MyPopup(props) {
+  const [error, setError] = useState();
+  const handleError = (error) => {
+    setError(
+      error?.response?.data || error?.message || error || "something went wrong"
+    );
+  };
   const login = function (e) {
     e.preventDefault();
     const userName = e.target.userName.value;
@@ -26,7 +32,10 @@ export default function MyPopup(props) {
         props.setIsLoggedIn(true);
         props.setIsPopup(false);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err);
+        handleError(err);
+      });
   };
   return (
     <>
@@ -68,6 +77,7 @@ export default function MyPopup(props) {
           ></input>
 
           <input className="submit-btn" type={"submit"}></input>
+          {error ? <span id="error">{error}</span> : null}
         </form>
       </div>
     </>

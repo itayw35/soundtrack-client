@@ -43,18 +43,23 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        flex-direction: column;
+        padding: 5px;
     }
-    .track-description{
+    .track-details{
         background-color: aliceblue;
         min-height: 20vh;
         width: 100%;
         display: flex;
+        flex-direction: column;
         justify-content: center;
         align-items: center;
         border-radius: 30px;
-        /* margin-top: 0px; */
+        text-align: center;
     }
-
+.track-description{
+width: 90%;
+}
 }
     /* .leaflet-control-container .leaflet-routing-container-hide{
         display: none;

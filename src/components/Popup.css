@@ -56,3 +56,6 @@ top: 10px
   .close-popup svg{
     font-size: 2rem;
   }
+  #error{
+    color: red;
+  }
