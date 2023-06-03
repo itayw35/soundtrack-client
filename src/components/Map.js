@@ -81,7 +81,7 @@ export default function Map() {
               />
             ) : null}
             {details.markers
-              ? details.markers.map((v, i) => {
+              ? details.markers.map((v) => {
                   return (
                     <Marker position={{ lat: v.latitude, lng: v.longitude }}>
                       <Popup>
@@ -99,8 +99,9 @@ export default function Map() {
                           <audio
                             ref={audioRef}
                             src={`data:audio/mp4;base64,${toBase64(
-                              details.markers[i].audio.data.data
+                              v.audio.data.data
                             )}`}
+                            onEnded={() => setIsPlaying(false)}
                           ></audio>
                         </div>
                       </Popup>
@@ -119,12 +120,12 @@ export default function Map() {
             </span>
           </div>
         )}
-        <p className="track-details">
+        <div className="track-details">
           <span>
             <h5>מורת דרך: {details.guideName}</h5>
           </span>
           <p className="track-description">{details.description}</p>
-        </p>
+        </div>
       </div>
     </>
   );
