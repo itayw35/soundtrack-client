@@ -20,9 +20,9 @@ function Audio(props) {
     <div className="audio-popup">
       <span>{props.marker.markerName}</span>
       {!isPlaying ? (
-        <AiOutlinePlayCircle onClick={() => handleAudio()} />
+        <AiOutlinePlayCircle onTouchStart={() => handleAudio()} />
       ) : (
-        <AiOutlinePauseCircle onClick={() => handleAudio()} />
+        <AiOutlinePauseCircle onTouchStart={() => handleAudio()} />
       )}
       <audio
         ref={audioRef}
