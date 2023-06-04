@@ -10,25 +10,13 @@ import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import RoutingMachine from "./RoutingMachine";
 import { Icon } from "leaflet";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
-import { AiOutlinePlayCircle } from "react-icons/ai";
-import { AiOutlinePauseCircle } from "react-icons/ai";
+import Audio from "./Audio";
 
 export default function Map() {
   const { trackId } = useParams();
   const [details, setDetails] = useState({});
   const [position, setPosition] = useState({});
   const markerRef = useRef();
-  function toBase64(arr) {
-    return btoa(
-      arr.reduce((data, byte) => data + String.fromCharCode(byte), "")
-    );
-  }
-  const audioRef = useRef();
-  const [isPlaying, setIsPlaying] = useState(false);
-  const handleAudio = () => {
-    !isPlaying ? audioRef.current.play() : audioRef.current.pause();
-    setIsPlaying(!isPlaying);
-  };
 
   useEffect(() => {
     navigator.geolocation.watchPosition(
@@ -86,23 +74,7 @@ export default function Map() {
                     <Marker position={{ lat: v.latitude, lng: v.longitude }}>
                       <Popup>
                         <div className="popup">
-                          <span>{v.markerName}</span>
-                          {!isPlaying ? (
-                            <AiOutlinePlayCircle
-                              onTouchStart={() => handleAudio()}
-                            />
-                          ) : (
-                            <AiOutlinePauseCircle
-                              onTouchStart={() => handleAudio()}
-                            />
-                          )}
-                          <audio
-                            ref={audioRef}
-                            src={`data:audio/mp4;base64,${toBase64(
-                              v.audio.data.data
-                            )}`}
-                            onEnded={() => setIsPlaying(false)}
-                          ></audio>
+                          <Audio marker={v} />
                         </div>
                       </Popup>
                     </Marker>
