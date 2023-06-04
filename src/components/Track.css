@@ -13,6 +13,7 @@
     height: 200px;
     width: 200px;
     transition: height 1s ease, width 1s ease;
+    border-radius: 50px;
 
 }
 .unavailable-track-image{
@@ -20,6 +21,8 @@
     width: 200px;
     transition: height 1s ease, width 1s ease;
 opacity: 0.7;
+border-radius: 50px;
+
 }
 
 

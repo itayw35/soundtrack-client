@@ -13,9 +13,23 @@ function Track(props) {
   const [isTempAvailable, setIsTempAvailable] = useState(false);
   const loaderRef = useRef();
   const containerRef = useRef();
+  const downloadRef = useRef();
+  const addDot = () => {
+    downloadRef.current.innerHTML = "Downloading...";
+  };
+  const removedDot = () => {
+    downloadRef.current.innerHTML = "Downloading..";
+  };
   const handleDownload = () => {
     loaderRef.current.classList.add("active");
+    downloadRef.current.innerHTML = "Downloading...";
+
+    const removeDotInterval = setInterval(removedDot, 1000);
+    const addDotInterval = setInterval(addDot, 2000);
+
     setTimeout(function () {
+      clearInterval(removeDotInterval);
+      clearInterval(addDotInterval);
       containerRef.current.classList.add("active");
       loaderRef.current.classList.remove("active");
       setIsTempAvailable(true);
@@ -42,7 +56,7 @@ function Track(props) {
   useEffect(() => {
     setIsTempAvailable(false);
   }, [props.userTracks]);
-  return  (props.userTracks.includes(props.track._id) || isTempAvailable) ? (
+  return props.userTracks.includes(props.track._id) || isTempAvailable ? (
     <Link className="track-link" to={`/tracks/${props.track.trackName}`}>
       <div className="track-box">
         <span>{props.track.trackName}</span>
@@ -53,18 +67,20 @@ function Track(props) {
         />
       </div>
     </Link>
-  ) :  (
+  ) : (
     <div>
       <div className="unavailable-track-link">
         <div className="track-box">
           <div className="inner-flex">
             <span>{props.track.trackName}</span>
-            <a className="download-flex" href="#" onClick={handleDownload}>
-              <span>
-                <AiOutlineDownload />
-              </span>
-              <span>Download</span>
-            </a>
+            <div ref={downloadRef}>
+              <a className="download-flex" href="#" onClick={handleDownload}>
+                <span>
+                  <AiOutlineDownload />
+                </span>
+                <span>Download</span>
+              </a>
+            </div>
             <div ref={containerRef} className="container">
               <span ref={loaderRef} className="download_loader"></span>
             </div>
@@ -79,8 +95,7 @@ function Track(props) {
         </div>
       </div>
     </div>
-  ) 
-
+  );
 }
 
 export default Track;

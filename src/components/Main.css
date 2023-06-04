@@ -6,9 +6,11 @@ gap: 15px;}
 
 .wrapping-flex{
     display: flex;
+    flex-direction: column;
     width: 90%;
     justify-content: center;
     height: 95%;
+    align-items: center;
     
 }
 .vertical-wrapping-flex{
@@ -51,6 +53,11 @@ gap: 15px;}
     border-radius: 0px 0px 3px 3px;
     overflow: hidden;
     animation: loader 10s forwards;
+ }
+ .store-toggle-button{
+  border-radius: 50px;
+  background-color: aqua;  
+  padding: 8px;
  }
  @keyframes loader{
     0%{

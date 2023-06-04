@@ -7,10 +7,22 @@ import MyPopup from "./MyPopup.js";
 export default function Main() {
   const [tracks, setTracks] = useState([]);
   const [userTracks, setUserTracks] = useState([]);
+  const [displayedTracks, setDisplayedTracks] = useState([]);
   const [isPopup, setIsPopup] = useState(false);
   const [isLogin, setIsLogin] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(localStorage.token);
+  const [isStore, setIsStore] = useState(false);
 
+  const handleStore = () => {
+    setIsStore(!isStore);
+    if (isStore) {
+      setDisplayedTracks(
+        tracks.filter((track) => userTracks.includes(track._id))
+      );
+    } else {
+      setDisplayedTracks(tracks);
+    }
+  };
   useEffect(() => {
     axios
       .get("https://soundtrack.herokuapp.com/tracks/get-tracks")
@@ -26,12 +38,20 @@ export default function Main() {
         })
         .then((res) => {
           setUserTracks(res.data);
+          if (!isStore) {
+            setDisplayedTracks(
+              tracks.filter((track) => res.data.includes(track._id))
+            );
+          }
         })
         .catch((err) => console.log(err));
     } else {
       setUserTracks([]);
+      if (!isStore) {
+        setDisplayedTracks([]);
+      }
     }
-  }, [isLoggedIn]);
+  }, [isLoggedIn, isStore]);
 
   return (
     <>
@@ -52,9 +72,13 @@ export default function Main() {
       ) : null}
       <div className="vertical-wrapping-flex">
         <div className="wrapping-flex">
+          <h2>{!isStore ? "My Tracks" : "TrackStore"}</h2>
+          <button className="store-toggle-button" onClick={handleStore}>
+            {!isStore ? <b>Go To TrackStore</b> : <b>Go To My Tracks</b>}
+          </button>
           <div className="track-links-flex">
-            {tracks.length
-              ? tracks.map((track) => {
+            {displayedTracks.length
+              ? displayedTracks.map((track) => {
                   return (
                     <Track
                       track={track}
