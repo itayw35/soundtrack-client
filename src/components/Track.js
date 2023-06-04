@@ -15,7 +15,9 @@ function Track(props) {
   const containerRef = useRef();
   const downloadRef = useRef();
   const addDot = () => {
-    downloadRef.current.innerHTML = "Downloading...";
+    setTimeout(function () {
+      downloadRef.current.innerHTML = "Downloading...";
+    }, 1000);
   };
   const removedDot = () => {
     downloadRef.current.innerHTML = "Downloading..";
