@@ -31,7 +31,11 @@ function Audio(props) {
       )}
       <audio
         ref={audioRef}
-        src={`data:audio/mp4;base64,${toBase64(props.marker.audio.data.data)}`}
+        src={
+          props.marker.audio.contentType === "audio/mp4"
+            ? `data:audio/mp4;base64,${toBase64(props.marker.audio.data.data)}`
+            : `data:audio/aac;base64,${toBase64(props.marker.audio.data.data)}`
+        }
         onEnded={() => setIsPlaying(false)}
       ></audio>
     </div>
