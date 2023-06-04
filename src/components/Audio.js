@@ -8,6 +8,7 @@ function Audio(props) {
 
   const handleAudio = () => {
     console.log(audioRef.current);
+    audioRef.current.load();
     !isPlaying ? audioRef.current.play() : audioRef.current.pause();
     setIsPlaying(!isPlaying);
   };
