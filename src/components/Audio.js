@@ -8,7 +8,6 @@ function Audio(props) {
 
   const handleAudio = () => {
     console.log(audioRef.current);
-    audioRef.current.load();
     !isPlaying ? audioRef.current.play() : audioRef.current.pause();
     setIsPlaying(!isPlaying);
   };
@@ -21,9 +20,9 @@ function Audio(props) {
     <div className="audio-popup">
       <span>{props.marker.markerName}</span>
       {!isPlaying ? (
-        <AiOutlinePlayCircle onTouchStart={() => handleAudio()} />
+        <AiOutlinePlayCircle onClick={() => handleAudio()} />
       ) : (
-        <AiOutlinePauseCircle onTouchStart={() => handleAudio()} />
+        <AiOutlinePauseCircle onClick={() => handleAudio()} />
       )}
       <audio
         ref={audioRef}
