@@ -7,6 +7,7 @@ function Audio(props) {
   const [isPlaying, setIsPlaying] = useState(false);
 
   const handleAudio = () => {
+    console.log(audioRef.current);
     !isPlaying ? audioRef.current.play() : audioRef.current.pause();
     setIsPlaying(!isPlaying);
   };

@@ -17,7 +17,7 @@ function Track(props) {
   const addDot = () => {
     setTimeout(function () {
       downloadRef.current.innerHTML = "Downloading...";
-    }, 1000);
+    }, 500);
   };
   const removedDot = () => {
     downloadRef.current.innerHTML = "Downloading..";
@@ -27,7 +27,7 @@ function Track(props) {
     downloadRef.current.innerHTML = "Downloading...";
 
     const removeDotInterval = setInterval(removedDot, 1000);
-    const addDotInterval = setInterval(addDot, 2000);
+    const addDotInterval = setInterval(addDot, 1000);
 
     setTimeout(function () {
       clearInterval(removeDotInterval);
