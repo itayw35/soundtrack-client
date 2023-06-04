@@ -8,7 +8,12 @@ function Audio(props) {
 
   const handleAudio = () => {
     console.log(audioRef.current);
-    !isPlaying ? audioRef.current.play() : audioRef.current.pause();
+    !isPlaying
+      ? audioRef.current
+          .play()
+          .then(() => console.log("success"))
+          .catch((err) => console.log(err))
+      : audioRef.current.pause();
     setIsPlaying(!isPlaying);
   };
   function toBase64(arr) {
