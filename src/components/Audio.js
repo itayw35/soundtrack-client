@@ -24,11 +24,11 @@ function Audio(props) {
   return (
     <div className="audio-popup">
       <span>{props.marker.markerName}</span>
-      {!isPlaying ? (
+      {/* {!isPlaying ? (
         <AiOutlinePlayCircle onTouchStart={() => handleAudio()} />
       ) : (
         <AiOutlinePauseCircle onTouchStart={() => handleAudio()} />
-      )}
+      )} */}
       <audio
         ref={audioRef}
         src={
@@ -37,6 +37,7 @@ function Audio(props) {
             : `data:audio/aac;base64,${toBase64(props.marker.audio.data.data)}`
         }
         onEnded={() => setIsPlaying(false)}
+        controls
       ></audio>
     </div>
   );
