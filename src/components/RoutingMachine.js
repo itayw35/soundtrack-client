@@ -1,7 +1,6 @@
 import L from "leaflet";
 import { createControlComponent } from "@react-leaflet/core";
 import "leaflet-routing-machine";
-import { AiOutlineLoading3Quarters } from "react-icons/ai";
 const createRoutineMachineLayer = (props) => {
   const markers = props.markers.map((marker) => {
     return L.latLng(marker.latitude, marker.longitude);
@@ -32,22 +31,21 @@ const createRoutineMachineLayer = (props) => {
     const routes = e.routes;
     const summary = routes[0].summary;
     const instructions = routes[0].instructions;
-    console.log(routes[0].legs[0].steps);
     console.log(summary);
     console.log(instructions);
   });
-  // fetch(
-  //   `https://api.mapbox.com/directions/v5/mapbox/walking/34.74957,32.05399;34.74957,32.05399;34.75316,32.05439;34.75204,32.05475;34.75284,32.05547;34.75627,32.05505;34.75627,32.05505?overview=false&alternatives=true&steps=true&access_token=${process.env.REACT_APP_MAPBOX_API_KEY}`
-  // )
-  //   .then((response) => response.json())
-  //   .then((data) => {
-  //     // Process the response data
-  //     console.log(data);
-  //   })
-  //   .catch((error) => {
-  //     // Handle any errors
-  //     console.error(error);
-  //   });
+  fetch(
+    `https://api.mapbox.com/directions/v5/mapbox/walking/34.74957,32.05399;34.74957,32.05399;34.75316,32.05439;34.75204,32.05475;34.75284,32.05547;34.75627,32.05505;34.75627,32.05505?overview=false&alternatives=true&steps=true&banner_instructions=true&language="he"&access_token=${process.env.REACT_APP_MAPBOX_API_KEY}`
+  )
+    .then((response) => response.json())
+    .then((data) => {
+      // Process the response data
+      console.log(data);
+    })
+    .catch((error) => {
+      // Handle any errors
+      console.error(error);
+    });
   return instance;
 };
 
