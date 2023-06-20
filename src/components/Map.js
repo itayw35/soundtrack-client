@@ -16,14 +16,48 @@ export default function Map() {
   const { trackId } = useParams();
   const [details, setDetails] = useState({});
   const [position, setPosition] = useState({});
+  const [instructions, setInstructions] = useState([]);
   const markerRef = useRef();
 
+
   useEffect(() => {
+    fetch(
+      `https://api.mapbox.com/directions/v5/mapbox/walking/34.74957,32.05399;34.74957,32.05399;34.75316,32.05439;34.75204,32.05475;34.75284,32.05547;34.75627,32.05505;34.75627,32.05505?overview=false&alternatives=true&steps=true&banner_instructions=true&language="he"&access_token=${process.env.REACT_APP_MAPBOX_API_KEY}`
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        // Process the response data
+        const instructions = data.routes[0].legs
+          .map((v) => v.steps)
+          .flat()
+          .map((v) => {
+            return {
+              instruction: v.maneuver.instruction,
+              location: {
+                lat: v.maneuver.location[0],
+                lng: v.maneuver.location[1],
+              },
+            };
+          });
+        console.log(instructions);
+        setInstructions(instructions);
+      })
+      .catch((error) => {
+        // Handle any errors
+        console.error(error);
+      });
+  }, []);
+  useEffect(() => {
+   const options = {
+      enableHighAccuracy: true,
+      timeout: 5000,
+      maximumAge: 0,
+    };
     navigator.geolocation.watchPosition(
       ({ coords: { latitude, longitude } }) => {
         console.log(latitude + " " + longitude);
         setPosition({ lat: latitude, lng: longitude });
-      }
+      },options
     );
     axios
       .get(
@@ -45,11 +79,10 @@ export default function Map() {
       <Header />
       <div className="vertical-map-flex">
         <b className="trackId">{trackId}</b>
-
         {details.center ? (
           <MapContainer
             center={[details.center.latitude, details.center.longitude]}
-            zoom={16}
+            zoom={18}
             scrollWheelZoom={true}
           >
             <TileLayer

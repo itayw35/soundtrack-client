@@ -12,7 +12,6 @@ export default function Main() {
   const [isLogin, setIsLogin] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(localStorage.token);
   const [isStore, setIsStore] = useState(false);
-  const [num, setNum] = useState(0);
   const handleStore = () => {
     setIsStore(!isStore);
     if (isStore) {
@@ -31,7 +30,7 @@ export default function Main() {
         console.log(res);
       })
       .catch((err) => console.log(err));
-  }, [isLoggedIn, isStore]);
+  }, []);
   useEffect(() => {
     if (isLoggedIn) {
       axios
@@ -41,7 +40,6 @@ export default function Main() {
         .then((res) => {
           setUserTracks(res.data);
           if (!isStore) {
-            console.log(tracks);
             setDisplayedTracks(
               tracks.filter((track) => res.data.includes(track._id))
             );
@@ -55,6 +53,7 @@ export default function Main() {
       }
     }
   }, [tracks, isLoggedIn, isStore]);
+
   return (
     <>
       <Header
