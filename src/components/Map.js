@@ -48,6 +48,9 @@ export default function Map() {
       });
   }, []);
   useEffect(() => {
+    function error(err) {
+      console.error(`ERROR(${err.code}): ${err.message}`);
+    }
    const options = {
       enableHighAccuracy: true,
       timeout: 5000,
@@ -57,7 +60,7 @@ export default function Map() {
       ({ coords: { latitude, longitude } }) => {
         console.log(latitude + " " + longitude);
         setPosition({ lat: latitude, lng: longitude });
-      },options
+      },error,options
     );
     axios
       .get(
