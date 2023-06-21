@@ -14,11 +14,12 @@ import Audio from "./Audio";
 
 export default function Map() {
   const { trackId } = useParams();
+  const [step, setStep] = useState();
   const [details, setDetails] = useState({});
   const [position, setPosition] = useState({});
   const [instructions, setInstructions] = useState([]);
   const markerRef = useRef();
-
+  const instructionsRef = useRef();
 
   useEffect(() => {
     fetch(
@@ -51,7 +52,7 @@ export default function Map() {
     function error(err) {
       console.error(`ERROR(${err.code}): ${err.message}`);
     }
-   const options = {
+    const options = {
       enableHighAccuracy: true,
       timeout: 5000,
       maximumAge: 0,
@@ -60,7 +61,20 @@ export default function Map() {
       ({ coords: { latitude, longitude } }) => {
         console.log(latitude + " " + longitude);
         setPosition({ lat: latitude, lng: longitude });
-      },error,options
+        if (
+          (instructions.find((step) => step.location.lat > latitude + 0.005) ||
+            instructions.find(
+              (step) => step.location.lat < latitude - 0.005
+            )) &&
+          (instructions.find((step) => step.location.lng > longitude + 0.005) ||
+            instructions.find((step) => step.location.lng < longitude - 0.005))
+        ) {
+          setStep(step.instruction);
+          instructionsRef.current.classList.add("active");
+        }
+      },
+      error,
+      options
     );
     axios
       .get(
@@ -88,6 +102,9 @@ export default function Map() {
             zoom={18}
             scrollWheelZoom={true}
           >
+            <div ref={instructionsRef} id="instructions-div">
+              {step}
+            </div>
             <TileLayer
               url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
               attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
