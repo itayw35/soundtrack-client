@@ -79,12 +79,13 @@ export default function Main() {
           </button>
           <div className="track-links-flex">
             {displayedTracks.length
-              ? displayedTracks.map((track) => {
+              ? displayedTracks.map((track,i,arr) => {
                   return (
                     <Track
                       track={track}
                       userTracks={userTracks}
                       isLoggedIn={isLoggedIn}
+                      arr={arr}
                     />
                   );
                 })
