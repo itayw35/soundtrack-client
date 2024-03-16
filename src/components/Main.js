@@ -88,7 +88,7 @@ export default function Main() {
                     />
                   );
                 })
-              :"Loading..."}
+              :null}
           </div>
         </div>
       </div>

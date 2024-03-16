@@ -69,7 +69,8 @@ function Track(props) {
         />
       </div>
     </Link>
-  ) : (
+  ) : props.userTracks.length === 0?
+  <span>Loading...</span>:(
     <div>
       <div className="unavailable-track-link">
         <div className="track-box">
