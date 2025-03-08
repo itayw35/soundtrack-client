@@ -4,14 +4,17 @@ import Header from "./Header.js";
 import "./Main.css";
 import Track from "./Track.js";
 import MyPopup from "./MyPopup.js";
+import {useLoaderData} from "react-router-dom"
+
 export default function Main() {
-  const [tracks, setTracks] = useState([]);
+  // const [tracks, setTracks] = useState([]);
   const [userTracks, setUserTracks] = useState([]);
   const [displayedTracks, setDisplayedTracks] = useState([]);
   const [isPopup, setIsPopup] = useState(false);
   const [isLogin, setIsLogin] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(localStorage.token);
   const [isStore, setIsStore] = useState(false);
+  const tracks = useLoaderData().data
   const handleStore = () => {
     setIsStore(!isStore);
     if (isStore) {
@@ -22,15 +25,15 @@ export default function Main() {
       setDisplayedTracks(tracks);
     }
   };
-  useEffect(() => {
-    axios
-      .get("https://soundtrack.herokuapp.com/tracks/get-tracks")
-      .then((res) => {
-        setTracks(res.data);
-        console.log(res);
-      })
-      .catch((err) => console.log(err));
-  }, []);
+  // useEffect(() => {
+  //   axios
+  //     .get("https://soundtrack.herokuapp.com/tracks/get-tracks")
+  //     .then((res) => {
+  //       setTracks(res.data);
+  //       console.log(res);
+  //     })
+  //     .catch((err) => console.log(err));
+  // }, []);
   useEffect(() => {
     if (isLoggedIn) {
       axios
