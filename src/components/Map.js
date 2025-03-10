@@ -62,12 +62,12 @@ export default function Map() {
         console.log(latitude + " " + longitude);
         setPosition({ lat: latitude, lng: longitude });
         if (
-          (instructions.find((step) => step.location.lat > latitude + 0.005) ||
-            instructions.find(
-              (step) => step.location.lat < latitude - 0.005
-            )) &&
-          (instructions.find((step) => step.location.lng > longitude + 0.005) ||
-            instructions.find((step) => step.location.lng < longitude - 0.005))
+          ((instructions.find((step) => step.location.lat <= latitude + 0.005 && step.location.lat >= latitude))||
+            (instructions.find(
+              (step) => step.location.lat >= latitude - 0.005 && latitude >= step.location.lat
+            ))) &&
+          ((instructions.find((step) => step.location.lng <= longitude + 0.005 && step.location.lng >= longitude) )||
+           ( instructions.find((step) => step.location.lng >= longitude - 0.005 && longitude >= step.location.lng)))
         ) {
           setStep(step.instruction);
           instructionsRef.current.classList.add("active");
